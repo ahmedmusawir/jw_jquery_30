@@ -6,12 +6,16 @@
 
 		formContainer: $('#contact'),
 
+
 		config: {
 			effect: 'slideToggle',
 			speed: 500
 		},
 		
-		init: function (conf) {
+		init: function (extConf) {
+
+			$.extend(true, this.config, extConf);
+
 			
 			$('<a/>', {
 				text: "Push Me",
@@ -24,15 +28,17 @@
 		},
 
 		show: function (event) {
-			// console.log('showing ...');
+
 			event.preventDefault();
 
 			var self = contactForm;
 
-			self.close.call(self.formContainer);
+			if ( self.formContainer.is(':hidden') ){
 
-			// console.log(self.config.speed);	
-			self.formContainer[self.config.effect](self.config.speed);
+				self.close.call(self.formContainer);
+				self.formContainer[self.config.effect](self.config.speed);
+
+			}
 			
 		},
 
@@ -40,10 +46,10 @@
 			
 			var self = contactForm;
 			var $this = $(this);
-			var spn = $this.find('span.close');
-			// console.log(spn);
+			var spn = $this.find('span.close').length;
+			console.log(spn);
 
-			// if ('span.close') { return; }
+			if ( $this.find('span.close').length )  return; 
 
 			$('<span/>', {
 				text: "X",
