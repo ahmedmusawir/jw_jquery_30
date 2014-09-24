@@ -5,6 +5,11 @@
 	contactForm = {
 
 		formContainer: $('#contact'),
+
+		config: {
+			effect: 'slideToggle',
+			speed: 500
+		},
 		
 		init: function (conf) {
 			
@@ -22,21 +27,32 @@
 			// console.log('showing ...');
 			event.preventDefault();
 
-			var $self = contactForm;
+			var self = contactForm;
 
-			$self.close.call($self.formContainer);
+			self.close.call(self.formContainer);
 
-			$self.formContainer.show();
+			// console.log(self.config.speed);	
+			self.formContainer[self.config.effect](self.config.speed);
 			
 		},
 
 		close: function (event) {
 			
+			var self = contactForm;
+			var $this = $(this);
+			var spn = $this.find('span.close');
+			// console.log(spn);
+
+			// if ('span.close') { return; }
+
 			$('<span/>', {
 				text: "X",
 				'class': "close"
 			})
-				.prependTo(this);
+				.prependTo(this)
+				.on('click', function (event) {
+					$this[self.config.effect](self.config.speed);
+				});
 
 		}
 
