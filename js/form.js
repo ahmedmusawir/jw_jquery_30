@@ -1,0 +1,7 @@
+(function () {
+
+	$('html').addClass('js');
+
+
+
+})();
