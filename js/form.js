@@ -24,13 +24,9 @@
 
 			var $self = contactForm;
 
-			// $self.close();
-			
 			$self.close.call($self.formContainer);
 
 			$self.formContainer.show();
-
-			// $self.call.close();
 			
 		},
 
@@ -42,7 +38,6 @@
 			})
 				.prependTo(this);
 
-			// console.log(this);
 		}
 
 	}
